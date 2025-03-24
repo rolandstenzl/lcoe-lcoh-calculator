@@ -1,6 +1,6 @@
-# osesm25_homework_1
+# LCOE and LCOH calculator
 Open source energy system modeling 2025 - homework assingnment nr. 1
-Copyright 2025 Bernd Mildt
+Copyright 2025 Bernd Mildt via MIT License
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
