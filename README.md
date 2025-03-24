@@ -1,5 +1,7 @@
 # osesm25_homework_1
 Open source energy system modeling 2025 - homework assingnment nr. 1
+Copyright 2025 Bernd Mildt
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 The homework features a levelized cost of electricity and hydrogen calculator, to determine the cost of generation for both of those energy sources.
 The calculator follows the simple UCRF and LCO"X" calculations and should work as a standalone executable program.
