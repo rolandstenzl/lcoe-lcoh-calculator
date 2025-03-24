@@ -1,5 +1,5 @@
 import pytest
-from calculator import calculate_ucrf, calculate_lcoe, calculate_lcoh
+from lcoe_lcoh_calculator import calculate_ucrf, calculate_lcoe, calculate_lcoh
 
 def test_calculate_ucrf():
     assert calculate_ucrf(0.05, 20) == pytest.approx(0.08024, rel=1e-3)
