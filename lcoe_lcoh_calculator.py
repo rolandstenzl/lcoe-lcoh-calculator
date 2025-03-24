@@ -2,6 +2,21 @@
 '''Bernd Mildt, 12307808'''
 '''Open source energy system modeling 2025'''
 
+import subprocess
+import sys
+
+# installing requirements
+def install_requirements():
+    required_packages = ["numpy", "matplotlib"]
+    for package in required_packages:
+        try:
+            __import__(package)
+        except ImportError:
+            print(f"Installing missing package: {package}")
+            subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+install_requirements()
+
 import numpy as np
 import matplotlib.pyplot as plt
 
