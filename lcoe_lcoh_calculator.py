@@ -22,28 +22,29 @@ def calculate_lcoh(ir, lt, capex, opex_fix, opex_var, output, input, f_in):
 def main():
     try:
         # general inputs
-        ir = float(input("Enter interest rate (as decimal, e.g. 0.05 for 5%): "))
+        ir = float(input("\nEnter interest rate as decimal (0.05 for 5%): "))
         lt = int(input("Enter lifetime in years: "))
 
         # electricity inputs
-        capex_el = float(input("Enter CAPEX for electricity [EUR/kW]: "))
-        opex_fix_el = float(input("Enter fixed OPEX for electricity [EUR/kW-year]: "))
-        output_el = float(input("Enter annual electricity output [kWh]: "))
+        capex_el = float(input("\nEnter CAPEX for electricity [EUR/kW]: "))
+        opex_fix_el = float(input("Enter fixed OPEX for electricity [EUR/kW*year]: "))
         opex_var_el = float(input("Enter variable OPEX for electricity [EUR/kWh]: "))
+        output_el = float(input("Enter annual electricity output [kWh]: "))
         
+        lcoe = calculate_lcoe(ir, lt, capex_el, opex_fix_el, opex_var_el, output_el)
+        print(f"\nLCOE: {lcoe:.4f} EUR/kWh")
+
         # h2 inputs
-        capex_h2 = float(input("Enter CAPEX for hydrogen [EUR/kW]: "))
-        opex_fix_h2 = float(input("Enter fixed OPEX for hydrogen [EUR/kW-year]: "))
+        capex_h2 = float(input("\nEnter CAPEX for hydrogen [EUR/kW]: "))
+        opex_fix_h2 = float(input("Enter fixed OPEX for hydrogen [EUR/kW*year]: "))
         opex_var_h2 = float(input("Enter variable OPEX for hydrogen [EUR/kWh]: "))
         output_h2 = float(input("Enter annual hydrogen output [kg]: "))
         input_h2 = float(input("Enter energy input per kg of hydrogen [kWh/kg]: "))
         f_in = float(input("Enter electricity cost per kWh [EUR/kWh]: "))
 
-        lcoe = calculate_lcoe(ir, lt, capex_el, opex_fix_el, opex_var_el, output_el)
         lcoh = calculate_lcoh(ir, lt, capex_h2, opex_fix_h2, opex_var_h2, output_h2, input_h2, f_in)
         
-        print(f"\nLCOE: {lcoe:.4f} EUR/kWh")
-        print(f"LCOH: {lcoh:.4f} EUR/kg")
+        print(f"\nLCOH: {lcoh:.4f} EUR/kg")
 
         interest_rates = np.linspace(0.01, 0.1, 10)
         lcoe_values = [calculate_lcoe(ir, lt, capex_el, opex_fix_el, opex_var_el, output_el) for ir in interest_rates]
@@ -52,9 +53,9 @@ def main():
         plt.figure(figsize=(8, 5))
         plt.plot(interest_rates * 100, lcoe_values, label='LCOE (EUR/kWh)', marker='o')
         plt.plot(interest_rates * 100, lcoh_values, label='LCOH (EUR/kg)', marker='s')
-        plt.xlabel('Interest Rate (%)')
+        plt.xlabel('Interest rate (%)')
         plt.ylabel('Cost (EUR)')
-        plt.title('LCOE vs. LCOH Comparison')
+        plt.title('LCOE vs. LCOH comparison')
         plt.legend()
         plt.grid()
         plt.show()
